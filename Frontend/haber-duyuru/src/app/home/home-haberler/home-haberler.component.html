@@ -1,0 +1,27 @@
+<div class="haberler-container">
+    <div *ngFor="let haber of haberler" class="haber-card">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title class="haber-baslik">{{ haber.konu }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-actions style="display: inline-block;padding-left: 16px;">
+                <span class="gecerlilik-tarihi">Geçerlilik Tarihi: {{ haber.gecerlilikTarihi | date: 'mediumDate' }}</span>
+                <div class="haber-actions">
+                    <button mat-button (click)="showHaberDetay(haber)">Detay</button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
+<ng-template #haberDetayDialog>
+    <div class="haber-detay-dialog">
+        <h2>{{ selectedHaber.konu }}</h2>
+        <p>{{ selectedHaber.icerik }}</p>
+        <p>Haber Linki : {{selectedHaber.haberLinki}} </p>
+        <p class="gecerlilik-tarihi">Geçerlilik Tarihi: {{ selectedHaber.gecerlilikTarihi | date:'mediumDate' }}</p>
+        <div class="button-container">
+            <button mat-raised-button (click)="closeHaberDetayDialog()">Kapat</button>
+        </div>
+    </div>
+</ng-template>

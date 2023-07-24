@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+  <span>Haberler</span>
+  <span class="spacer"></span>
+  <button mat-button class="haber-ekle-button" (click)="showHaberEkle()">
+    Haber ekle
+  </button>
+</mat-toolbar>
+
+<div class="haberler-container">
+  <div *ngFor="let haber of haberler" class="haber-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="haber-baslik">{{ haber.konu }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions style="display: inline-block; padding-left: 16px;">
+        <p class="haber-icerik">{{ haber.icerik }}</p>
+        <p class="haber-icerik">{{ haber.haberLinki}}</p>
+        <div class="haber-actions">
+          <span class="gecerlilik-tarihi">Geçerlilik Tarihi: {{ haber.gecerlilikTarihi | date: 'mediumDate' }}</span>
+          <button mat-button color="primary" (click)="showHaberDuzenle(haber)">Düzenle</button>
+          <button mat-button color="primary" (click)="silHaber(haber)">Sil</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #haberEkleDialog>
+  <div class="haber-ekle-dialog">
+    <h2>Haber Ekle</h2>
+    <label for="konu">Konu:</label>
+    <input type="text" id="konu" name="konu" [(ngModel)]="yeniHaber.konu" />
+    <label for="icerik">İçerik:</label>
+    <textarea id="icerik" name="icerik" [(ngModel)]="yeniHaber.icerik"></textarea>
+    <label for="haberLinki">Haber Linki:</label>
+    <input type="text" id="haberLinki" name="haberLinki" [(ngModel)]="yeniHaber.haberLinki">
+    <label for="gecerlilikTarihi">Geçerlilik Tarihi:</label>
+    <input type="date" id="gecerlilikTarihi" name="gecerlilikTarihi" [(ngModel)]="yeniHaber.gecerlilikTarihi" />
+
+    <div class="button-container">
+      <button mat-raised-button class="kapat-buton" (click)="closeDialog()">Kapat</button>
+      <button mat-raised-button class="kaydet-buton" (click)="kaydetHaber()">Kaydet</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #haberDüzenleDialog>
+  <div class="haber-ekle-dialog">
+    <h2>Haber Ekle</h2>
+    <label for="konu">Konu:</label>
+    <input type="text" id="konu" name="konu" [(ngModel)]="seciliHaber.konu" />
+    <label for="icerik">İçerik:</label>
+    <textarea id="icerik" name="icerik" [(ngModel)]="seciliHaber.icerik"></textarea>
+    <label for="haberLinki">Haber Linki:</label>
+    <input type="text" id="haberLinki" name="haberLinki" [(ngModel)]="seciliHaber.haberLinki">
+    <label for="gecerlilikTarihi">Geçerlilik Tarihi:</label>
+    <input type="date" id="gecerlilikTarihi" name="gecerlilikTarihi" [(ngModel)]="seciliHaber.gecerlilikTarihi" />
+
+    <div class="button-container">
+      <button mat-raised-button class="kapat-buton" (click)="closeDialog()">Kapat</button>
+      <button mat-raised-button class="kaydet-buton" (click)="guncelleHaber()">Güncelle</button>
+    </div>
+  </div>
+</ng-template>

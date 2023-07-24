@@ -1,0 +1,14 @@
+<div class="duyurular-container">
+    <div *ngFor="let duyuru of duyurular" class="duyuru-card">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title class="duyuru-baslik">{{ duyuru.konu }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img [src]="getFullImagePath(duyuru)" alt="Duyuru Resmi" class="duyuru-resim">
+                <p class="duyuru-icerik">{{ duyuru.icerik }}</p>
+                <p class="gecerlilik-tarihi">Geçerlilik Tarihi: {{ duyuru.gecerlilikTarihi | date:'mediumDate' }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+.haberler-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.haber-card {
+    flex-basis: 30%;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mat-card {
+    height: 100%;
+}
+
+.mat-card-title {
+    font-weight: bold;
+}
+
+.gecerlilik-tarihi {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 10px;
+    float: left;
+}
+
+.haber-baslik {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.haber-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.haber-detay-dialog {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    max-width: 500px;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.haber-detay-dialog h2 {
+    margin-bottom: 10px;
+}
+
+.haber-detay-dialog p {
+    margin-bottom: 20px;
+}
+
+.kapat-buton {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}

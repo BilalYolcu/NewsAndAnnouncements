@@ -1,0 +1,69 @@
+<mat-toolbar color="primary">
+  <span>Duyurular</span>
+  <span class="spacer"></span>
+  <button mat-button class="duyuru-ekle-button" (click)="showDuyuruEkle()">
+    Duyuru ekle
+  </button>
+</mat-toolbar>
+
+<div class="duyuruler-container">
+  <div *ngFor="let duyuru of duyurular" class="duyuru-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="duyuru-baslik">{{ duyuru.konu }}</mat-card-title>
+      </mat-card-header>
+      <div class="duyuru-content">
+        <div class="duyuru-image">
+          <img [src]="getFullImagePath(duyuru)" alt="Duyuru Resmi" class="duyuru-resim">
+        </div>
+        <div class="duyuru-info">
+          <p class="duyuru-icerik">{{ duyuru.icerik }}</p>
+          <div class="duyuru-actions">
+            <span class="gecerlilik-tarihi">Geçerlilik Tarihi: {{ duyuru.gecerlilikTarihi | date: 'mediumDate' }}</span>
+            <button mat-button color="primary" (click)="showDuyuruDuzenle(duyuru)">Düzenle</button>
+            <button mat-button color="primary" (click)="silDuyuru(duyuru)">Sil</button>
+          </div>
+        </div>
+      </div>
+
+    </mat-card>
+  </div>
+</div>
+
+
+<ng-template #duyuruEkleDialog>
+  <div class="duyuru-ekle-dialog">
+    <h2>Duyuru Ekle</h2>
+    <label for="konu">Konu:</label>
+    <input type="text" id="konu" name="konu" [(ngModel)]="yeniDuyuru.konu" />
+    <label for="icerik">İçerik:</label>
+    <textarea id="icerik" name="icerik" [(ngModel)]="yeniDuyuru.icerik"></textarea>
+    <input type="file" (change)="onResimSec($event)" accept="image/*">
+    <label for="gecerlilikTarihi">Geçerlilik Tarihi:</label>
+    <input type="date" id="gecerlilikTarihi" name="gecerlilikTarihi" [(ngModel)]="yeniDuyuru.gecerlilikTarihi" />
+
+    <div class="button-container">
+      <button mat-raised-button class="kapat-buton" (click)="closeDialog()">Kapat</button>
+      <button mat-raised-button class="kaydet-buton" (click)="kaydetDuyuru()">Kaydet</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #duyuruDüzenleDialog>
+  <div class="duyuru-ekle-dialog">
+    <h2>Duyuru Ekle</h2>
+    <label for="konu">Konu:</label>
+    <input type="text" id="konu" name="konu" [(ngModel)]="seciliDuyuru.konu" />
+    <label for="icerik">İçerik:</label>
+    <textarea id="icerik" name="icerik" [(ngModel)]="seciliDuyuru.icerik"></textarea>
+    <input type="file" (change)="onResimSec($event)" accept="image/*">
+
+    <label for="gecerlilikTarihi">Geçerlilik Tarihi:</label>
+    <input type="date" id="gecerlilikTarihi" name="gecerlilikTarihi" [(ngModel)]="seciliDuyuru.gecerlilikTarihi" />
+
+    <div class="button-container">
+      <button mat-raised-button class="kapat-buton" (click)="closeDialog()">Kapat</button>
+      <button mat-raised-button class="kaydet-buton" (click)="guncelleDuyuru()">Güncelle</button>
+    </div>
+  </div>
+</ng-template>
